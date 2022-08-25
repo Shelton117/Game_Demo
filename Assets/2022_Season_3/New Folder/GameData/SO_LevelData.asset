@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675b72f10ba026409f78aaa36a43820, type: 3}
   m_Name: SO_LevelData
   m_EditorClassIdentifier: 
-  commandID: 01000000020000000000000004000000
+  commandID: 01000000010000000000000001000000

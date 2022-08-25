@@ -11,10 +11,12 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
         [SerializeField] private SO_LevelData levelData;
         [HideInInspector] public List<CommandID> ids;
         [HideInInspector] public List<int> indexs = new List<int>();
+        private GameObject mPlayer;
 
         // Start is called before the first frame update
         void Start()
         {
+            mPlayer = GameObject.Find("Player");
             ids = levelData.commandID;
 
             // 获取缺失的命令
@@ -45,6 +47,13 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
                 ids[index] = id;
                 indexs.Remove(index);
             }
+            
+            // 没none就可以执行play
+            if (isReady())
+            {
+                EventHandler.CallReady2Play();
+                Debug.Log("isReady");
+            }
         }
 
         /// <summary>
@@ -57,6 +66,11 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             return indexs.Contains(index);
         }
 
+        private bool isReady()
+        {
+            return !ids.Contains(CommandID.None);
+        }
+
         public void SetNone(int index)
         {
             if (!indexs.Contains(index) && index < ids.Count)
@@ -64,6 +78,11 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
                 indexs.Add(index);
                 ids[index] = CommandID.None;
             }
+        }
+
+        public GameObject GetPlayer()
+        {
+            return mPlayer;
         }
     }
 }

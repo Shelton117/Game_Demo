@@ -44,7 +44,8 @@ namespace _2022_Season_3.New_Folder.Scripts.UI
 
         public void OnStartBtnClick()
         {
-            // StartCoroutine(CommandManager.Instance.UndoStart());
+            StartCoroutine(CommandManager.Instance.StartPlay());
+
             var ID = string.Empty;
             foreach (var id in GameManager.Instance.ids)
             {

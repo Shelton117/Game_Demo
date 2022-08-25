@@ -1,14 +1,14 @@
 using UnityEngine;
+using _2022_Season_3.New_Folder.Scripts.Manager;
 
 namespace _2022_Season_3.New_Folder.Scripts.command_mode
 {
     public class MoveForward : Command
     {
-        private GameObject mPlayer;
+        private GameObject mPlayer = GameManager.Instance.GetPlayer();
 
-        public override void Execute(GameObject player)
+        public override void Execute()
         {
-            mPlayer = player;
             mPlayer.transform.Translate(Vector3.forward);
         }
 
@@ -20,11 +20,10 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
     public class MoveBack : Command
     {
-        private GameObject mPlayer;
+        private GameObject mPlayer = GameManager.Instance.GetPlayer();
 
-        public override void Execute(GameObject player)
+        public override void Execute()
         {
-            mPlayer = player;
             mPlayer.transform.Translate(Vector3.back);
         }
 
@@ -36,11 +35,10 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
     public class MoveLeft : Command
     {
-        private GameObject mPlayer;
+        private GameObject mPlayer = GameManager.Instance.GetPlayer();
 
-        public override void Execute(GameObject player)
+        public override void Execute()
         {
-            mPlayer = player;
             mPlayer.transform.Translate(Vector3.left);
         }
 
@@ -52,11 +50,10 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
     public class MoveRight : Command
     {
-        private GameObject mPlayer;
+        private GameObject mPlayer = GameManager.Instance.GetPlayer();
 
-        public override void Execute(GameObject player)
+        public override void Execute()
         {
-            mPlayer = player;
             mPlayer.transform.Translate(Vector3.right);
         }
 

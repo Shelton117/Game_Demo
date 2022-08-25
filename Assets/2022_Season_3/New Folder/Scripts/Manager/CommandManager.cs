@@ -3,12 +3,36 @@ using System.Collections.Generic;
 using Scripts.Utilities;
 using UnityEngine;
 using _2022_Season_3.New_Folder.Scripts.command_mode;
+using EventHandler = _2022_Season_3.New_Folder.Scripts.Utilities.EventHandler;
 
 namespace _2022_Season_3.New_Folder.Scripts.Manager
 {
     public class CommandManager : Singleton<CommandManager>
     {
         private readonly List<Command> mCommands = new List<Command>();
+        private readonly List<Command> mReadyCommands = new List<Command>();
+
+        private void OnEnable()
+        {
+            EventHandler.Ready2Play += OnReady2Play;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.Ready2Play -= OnReady2Play;
+        }
+
+        private void OnReady2Play()
+        {
+            var commands = GameManager.Instance.ids;
+            foreach (var command in commands)
+            {
+                var readyCommand = InputHandler.SetCommand(command);
+                mReadyCommands.Add(readyCommand);
+            }
+
+            Debug.Log("OnReady2Play");
+        }
 
         void Start()
         {
@@ -22,11 +46,13 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
 
         public IEnumerator StartPlay()
         {
-            foreach (var command in mCommands)
+            foreach (var command in mReadyCommands)
             {
                 yield return new WaitForSeconds(0.2f);
-                command.Undo();
+                command.Execute();
             }
+
+            Debug.Log("StartPlay");
         }
 
         public IEnumerator UndoStart()
