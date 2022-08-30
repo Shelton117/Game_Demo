@@ -1,9 +1,9 @@
-using System.Collections.Specialized;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using _2022_Season_3.New_Folder.Scripts.Manager;
 using _2022_Season_3.New_Folder.Scripts.Utilities;
+using EventHandler = _2022_Season_3.New_Folder.Scripts.Utilities.EventHandler;
 
 namespace _2022_Season_3.New_Folder.Scripts.UI
 {
@@ -34,30 +34,35 @@ namespace _2022_Season_3.New_Folder.Scripts.UI
 
         private void OnEnable()
         {
-            Utilities.EventHandler.UpdateCommandText += OnUpdateCommandText;
+            EventHandler.UpdateCommandText += OnUpdateCommandText;
+            EventHandler.EndTheGame += OnEndTheGame;
         }
 
         private void OnDisable()
         {
-            Utilities.EventHandler.UpdateCommandText -= OnUpdateCommandText;
-        }
-
-        public void OnStartBtnClick()
-        {
-            StartCoroutine(CommandManager.Instance.StartPlay());
-
-            var ID = string.Empty;
-            foreach (var id in GameManager.Instance.ids)
-            {
-                ID += id.ToString();
-            }
-
-            mCommandText.text = ID;
+            EventHandler.UpdateCommandText -= OnUpdateCommandText;
+            EventHandler.EndTheGame -= OnEndTheGame;
         }
 
         private void OnUpdateCommandText(string obj)
         {
             mCommandText.text = obj;
+        }
+        
+        private void OnEndTheGame(GameState obj)
+        {
+            switch (obj)
+            {
+                case GameState.win:
+                    break;
+                case GameState.fail:
+                    break;
+            }
+        }
+
+        public void OnStartBtnClick()
+        {
+            StartCoroutine(CommandManager.Instance.StartPlay());
         }
     }
 }

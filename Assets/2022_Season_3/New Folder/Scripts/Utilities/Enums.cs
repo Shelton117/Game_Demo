@@ -8,4 +8,12 @@ namespace _2022_Season_3.New_Folder.Scripts.Utilities
         Left,
         Right,
     }
+
+    public enum GameState
+    {
+        none,
+        win,
+        fail,
+    }
+
 }

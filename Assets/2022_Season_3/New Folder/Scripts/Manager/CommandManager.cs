@@ -12,6 +12,21 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
         private readonly List<Command> mCommands = new List<Command>();
         private readonly List<Command> mReadyCommands = new List<Command>();
 
+        [SerializeField] private int i = 5;
+        
+        void Start()
+        {
+            gameObject.AddComponent<InputHandler>();
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                StopCoroutine(StartPlay());
+            }
+        }
+
         private void OnEnable()
         {
             EventHandler.Ready2Play += OnReady2Play;
@@ -34,11 +49,6 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             Debug.Log("OnReady2Play");
         }
 
-        void Start()
-        {
-            gameObject.AddComponent<InputHandler>();
-        }
-
         public void AddCommands(Command command)
         {
             mCommands.Add(command);
@@ -46,13 +56,20 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
 
         public IEnumerator StartPlay()
         {
+            EventHandler.CallUpdateUIEvent("Times:" + i);
+
             foreach (var command in mReadyCommands)
             {
                 yield return new WaitForSeconds(0.2f);
                 command.Execute();
             }
 
-            Debug.Log("StartPlay");
+            Debug.Log("StartPlay:"+i);
+            if (i > 0)
+            {
+                StartCoroutine(StartPlay());
+                i--;
+            }
         }
 
         public IEnumerator UndoStart()
@@ -66,6 +83,11 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             }
 
             mCommands.Clear();
+        }
+
+        public void EndGame()
+        {
+            StopAllCoroutines();
         }
     }
 }

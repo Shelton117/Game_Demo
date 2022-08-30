@@ -18,9 +18,9 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
         private static Dictionary<CommandID, Command> dic = new Dictionary<CommandID, Command>()
         {
             {CommandID.Up, new MoveForward()},
-            {CommandID.Down, new MoveForward()},
-            {CommandID.Left, new MoveForward()},
-            {CommandID.Right, new MoveForward()},
+            {CommandID.Down, new MoveBack()},
+            {CommandID.Left, new MoveLeft()},
+            {CommandID.Right, new MoveRight()},
             // TODO:∆‰À˚÷∏¡Ó
         };
 

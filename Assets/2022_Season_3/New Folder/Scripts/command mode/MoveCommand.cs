@@ -9,7 +9,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
         public override void Execute()
         {
-            mPlayer.transform.Translate(Vector3.forward);
+            mPlayer.transform.Translate(Vector3.forward * 10);
         }
 
         public override void Undo()
@@ -24,7 +24,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
         public override void Execute()
         {
-            mPlayer.transform.Translate(Vector3.back);
+            mPlayer.transform.Translate(Vector3.back * 10);
         }
 
         public override void Undo()
@@ -39,7 +39,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
         public override void Execute()
         {
-            mPlayer.transform.Translate(Vector3.left);
+            mPlayer.transform.Translate(Vector3.left * 10);
         }
 
         public override void Undo()
@@ -54,7 +54,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
 
         public override void Execute()
         {
-            mPlayer.transform.Translate(Vector3.right);
+            mPlayer.transform.Translate(Vector3.right * 10);
         }
 
         public override void Undo()

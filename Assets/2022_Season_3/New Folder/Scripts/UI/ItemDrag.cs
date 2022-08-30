@@ -12,7 +12,7 @@ namespace _2022_Season_3.New_Folder.Scripts.UI
         /// 初始位置
         /// </summary>
         private Vector3 originalTransform;
-        private Text name;
+        private Text mName;
         private int index = -1;
         /// <summary>
         /// 当前块的指令
@@ -77,8 +77,8 @@ namespace _2022_Season_3.New_Folder.Scripts.UI
 
         private void SetIDName()
         {
-            name = GetComponentInChildren<Text>();
-            name.text = id.ToString();
+            mName = GetComponentInChildren<Text>();
+            mName.text = id.ToString();
         }
     }
 }

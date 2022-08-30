@@ -11,6 +11,13 @@ namespace _2022_Season_3.New_Folder.Scripts.Utilities
             Ready2Play?.Invoke();
         }
 
+        public static event Action<GameState> EndTheGame;
+
+        public static void CallEndTheGame(GameState gameState)
+        {
+            EndTheGame?.Invoke(gameState);
+        }
+
         public static event Action<string> UpdateCommandText;
 
         public static void CallUpdateUIEvent(string text)

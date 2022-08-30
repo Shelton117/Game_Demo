@@ -8,5 +8,6 @@ namespace _2022_Season_3.New_Folder.Scripts.Data
     public class SO_LevelData : ScriptableObject
     {
         public List<CommandID> commandID;
+        public int times;
     }
 }

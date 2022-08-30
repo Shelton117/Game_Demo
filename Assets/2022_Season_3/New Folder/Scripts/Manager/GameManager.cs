@@ -9,6 +9,7 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] private SO_LevelData levelData;
+        private SO_LevelData currentData;
         [HideInInspector] public List<CommandID> ids;
         [HideInInspector] public List<int> indexs = new List<int>();
         private GameObject mPlayer;
@@ -17,12 +18,14 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
         void Start()
         {
             mPlayer = GameObject.Find("Player");
-            ids = levelData.commandID;
+            // 复制数据
+            currentData = Instantiate(levelData);
+            ids = currentData.commandID;
 
             // 获取缺失的命令
-            for (int i = 0; i < levelData.commandID.Count; i++)
+            for (int i = 0; i < currentData.commandID.Count; i++)
             {
-                if (levelData.commandID[i] == CommandID.None)
+                if (currentData.commandID[i] == CommandID.None)
                 {
                     indexs.Add(i);
                 }
@@ -45,6 +48,7 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             if (isIDInNone(index))
             {
                 ids[index] = id;
+                Debug.Log(id);
                 indexs.Remove(index);
             }
             
