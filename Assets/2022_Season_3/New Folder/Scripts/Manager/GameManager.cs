@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Scripts.Utilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using _2022_Season_3.New_Folder.Scripts.Data;
 using _2022_Season_3.New_Folder.Scripts.Utilities;
 
@@ -9,18 +10,30 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] private SO_LevelData levelData;
+
         private SO_LevelData currentData;
         [HideInInspector] public List<CommandID> ids;
+        [HideInInspector] public int times;
+
         [HideInInspector] public List<int> indexs = new List<int>();
         private GameObject mPlayer;
+
+        public GameObject Player
+        {
+            get { return mPlayer; }
+            set { mPlayer = value; }
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            mPlayer = GameObject.Find("Player");
+            SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+            EventHandler.CallGameStateChangeEvent(GameState.Play);
+            
             // 复制数据
             currentData = Instantiate(levelData);
             ids = currentData.commandID;
+            times = currentData.times;
 
             // 获取缺失的命令
             for (int i = 0; i < currentData.commandID.Count; i++)
@@ -39,7 +52,7 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
         }
 
         /// <summary>
-        /// 
+        /// 设置none位置的指令
         /// </summary>
         /// <param name="index"></param>
         /// <param name="id"></param>
@@ -70,6 +83,10 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             return indexs.Contains(index);
         }
 
+        /// <summary>
+        /// 是否准备就绪
+        /// </summary>
+        /// <returns></returns>
         private bool isReady()
         {
             return !ids.Contains(CommandID.None);
@@ -82,6 +99,14 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
                 indexs.Add(index);
                 ids[index] = CommandID.None;
             }
+        }
+
+        /// <summary>
+        /// 进入关卡时获取玩家
+        /// </summary>
+        public void SetPlayer()
+        {
+            mPlayer = GameObject.Find("Player");
         }
 
         public GameObject GetPlayer()

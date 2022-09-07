@@ -7,13 +7,17 @@ namespace _2022_Season_3.New_Folder.Scripts.Utilities
         Down,
         Left,
         Right,
+        Start,
+        Setting,
+        Exit,
     }
 
     public enum GameState
     {
-        none,
-        win,
-        fail,
+        None,
+        Win,
+        Fail,
+        Play
     }
 
 }

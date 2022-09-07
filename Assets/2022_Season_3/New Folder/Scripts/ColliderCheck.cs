@@ -7,29 +7,42 @@ namespace _2022_Season_3.New_Folder.Scripts
     public class ColliderCheck : MonoBehaviour
     {
         [SerializeField] private GameState Check_Type;
+        private bool EndOfOneRound = false;
 
-        // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
-
+            EventHandler.EndOfOneRound += OnEndOfOneRound;
         }
 
-        // Update is called once per frame
-        void Update()
+        void OnDisable()
         {
-
+            EventHandler.EndOfOneRound -= OnEndOfOneRound;
         }
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (CommandManager.Instance.Time2Zero())
             {
-                Debug.Log("win");
-                
-                CommandManager.Instance.EndGame();
+                if (other.gameObject.tag == "Player")
+                {
+                    Debug.Log("win");
 
-                EventHandler.CallEndTheGame(Check_Type);
+                    CommandManager.Instance.EndGame();
+
+                    EventHandler.CallEndTheGame(Check_Type);
+                }
             }
+            
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            
+        }
+
+        private void OnEndOfOneRound()
+        {
+            EndOfOneRound = true;
         }
     }
 }

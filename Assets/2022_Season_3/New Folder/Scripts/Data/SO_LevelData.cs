@@ -9,5 +9,7 @@ namespace _2022_Season_3.New_Folder.Scripts.Data
     {
         public List<CommandID> commandID;
         public int times;
+
+        public Vector3 CameraPosition;
     }
 }

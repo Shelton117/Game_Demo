@@ -23,8 +23,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
             {CommandID.Right, new MoveRight()},
             // TODO:其他指令
         };
-
-        private GameObject mPlayer;
+        
         private KeyCode[] mKeyCodes = new[]
         {
             KeyCode.W,
@@ -36,7 +35,7 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
         // Start is called before the first frame update
         void Start()
         {
-            mPlayer = GameObject.Find("Player");
+            
         }
 
         // Update is called once per frame
@@ -54,7 +53,10 @@ namespace _2022_Season_3.New_Folder.Scripts.command_mode
         {
             return dic[id];
         }
-
+        
+        /// <summary>
+        /// 玩家输入指令
+        /// </summary>
         private void PlayerInputHandler()
         {
             if (Input.GetKeyDown(mKeyCodes[0]))

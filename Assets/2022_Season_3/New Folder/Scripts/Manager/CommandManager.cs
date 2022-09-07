@@ -67,6 +67,7 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             Debug.Log("StartPlay:"+i);
             if (i > 0)
             {
+                EventHandler.CallEndOfOneRound();
                 StartCoroutine(StartPlay());
                 i--;
             }
@@ -85,9 +86,17 @@ namespace _2022_Season_3.New_Folder.Scripts.Manager
             mCommands.Clear();
         }
 
+        /// <summary>
+        /// ”Œœ∑Ω· ¯£¨Õ£÷π–Ø≥Ã
+        /// </summary>
         public void EndGame()
         {
             StopAllCoroutines();
+        }
+
+        public bool Time2Zero()
+        {
+            return i <= 0;
         }
     }
 }
