@@ -36,4 +36,6 @@ namespace Scripts.Utilities
             get { return instance != null; }
         }
     }
+
+
 }
