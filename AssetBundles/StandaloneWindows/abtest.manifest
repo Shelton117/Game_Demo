@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 790898616
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 797b8453131fd9c57c9e80ea737d9fe6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ae8c52309304dbced62e9359e7a02dec
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/2022_Season_4/Systems/Resources/GO_Empty.prefab
+Dependencies: []
